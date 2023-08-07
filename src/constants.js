@@ -8,6 +8,7 @@ export const airIndexMap = [
   "Very Poor",
 ];
 export const airIndexColors = [
+  "",
   "#689F38",
   "#FBC02D",
   "#F57C00",
