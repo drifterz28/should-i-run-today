@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
 import { shouldIRunYes, shouldIRunNo } from "./constants";
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+import { getRandomInt } from "./helpers";
 
 export const useShouldIRunText = () => {
   const [text, setText] = useState("");
-  const [aqi, setAqi] = useState(0);
+  const [weatherData, setWeatherData] = useState({});
+  const { aqiIndex, feels_like, humidity, speed } = weatherData;
+  const isGood = aqiIndex < 3 && feels_like < 90 && humidity < 90 && speed < 20;
 
   useEffect(() => {
-    if (aqi < 3 && aqi > 0) {
+    if (isGood) {
       const randomNumber = getRandomInt(shouldIRunYes.length);
       setText(shouldIRunYes[randomNumber]);
-    } else if (aqi > 3) {
+    } else {
       const randomNumber = getRandomInt(shouldIRunNo.length);
-
       setText(shouldIRunNo[randomNumber]);
     }
-  }, [setText, aqi]);
-  return [text, setAqi];
+  }, [setText, isGood]);
+  return [text, setWeatherData];
 };

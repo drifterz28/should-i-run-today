@@ -6,9 +6,12 @@ import { getCurrentWeather } from "./helpers";
 
 function App() {
   const [data, setData] = useState(defaultState);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorCode, setErrorCode] = useState(null);
   const [text, setText] = useShouldIRunText();
 
   useEffect(() => {
+    setIsLoading(true);
     const getWeatherData = async () => {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
@@ -17,10 +20,13 @@ function App() {
             position?.coords?.longitude,
           );
           setData(weatherData);
-          setText(weatherData?.aqiIndex);
+          setText(weatherData);
+          setIsLoading(false);
         },
         (error) => {
           console.log(error);
+          setErrorCode(error.code);
+          setIsLoading(false);
         },
       );
     };
@@ -33,13 +39,21 @@ function App() {
       className="App"
       style={{ backgroundColor: airIndexColors[data.aqiIndex] }}
     >
-      <div className="App-header">
-        <div>Temp: {data?.temp}</div>
-        <div>Wind: {data.speed}</div>
-        <div>humidity: {data.humidity}%</div>
-        <div>AQI: {data.aqi}</div>
-      </div>
-      <h1>{text}</h1>
+      {isLoading && <h1 className="Loading">Loading...</h1>}
+      {errorCode && (
+        <h1 className="Error-state">Dude, I need to know your location!</h1>
+      )}
+      {!isLoading && (
+        <>
+          <div className="App-header">
+            <div>Temp: {data?.temp}</div>
+            <div>Wind: {data.speed}</div>
+            <div>humidity: {data.humidity}%</div>
+            <div>AQI: {data.aqi}</div>
+          </div>
+          <h1>{text}</h1>
+        </>
+      )}
     </div>
   );
 }

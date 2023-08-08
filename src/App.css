@@ -3,6 +3,8 @@
   flex-direction: column;
   text-align: center;
   min-height: 100vh;
+  background-color: black;
+  transition: background-color 1000ms linear;
 }
 
 .App-header {
@@ -18,5 +20,5 @@
 
 h1 {
   color: white;
-  font-size: calc(10px + 20vmin);
+  font-size: calc(10px + 10vmin);
 }

@@ -24,3 +24,7 @@ navigator.geolocation.getCurrentPosition(
     console.log(error);
   },
 );
+
+export const getRandomInt = (max) => {
+  return Math.floor(Math.random() * max);
+};
