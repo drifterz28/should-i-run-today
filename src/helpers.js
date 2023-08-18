@@ -13,6 +13,7 @@ const airQualityIndex = (pm2_5) => {
   } else if (pm2_5 > 250.5) {
     aqi = 5;
   }
+  return aqi;
 };
 
 export const getCurrentWeather = async (lat, long) => {
