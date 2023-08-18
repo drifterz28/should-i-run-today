@@ -21,4 +21,6 @@
 h1 {
   color: white;
   font-size: calc(10px + 10vmin);
+  margin: auto;
+  max-width: 80%;
 }
