@@ -1,19 +1,19 @@
 export const openKey = "ff6f5d189dfa1eba10cc3559a7eb097d";
 export const airIndexMap = [
-  "",
   "Good",
-  "Fair",
   "Moderate",
   "Poor",
   "Very Poor",
+  "Very unhealthy",
+  "Hazardous",
 ];
 export const airIndexColors = [
-  "",
   "#689F38",
   "#FBC02D",
   "#F57C00",
   "#C53929",
   "#AD1457",
+  "#880E4F",
 ];
 export const currentWeather = (lat, long) =>
   `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=${openKey}`;
