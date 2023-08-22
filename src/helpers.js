@@ -18,7 +18,7 @@ const airQualityIndex = (pm2_5) => {
 
 export const getCurrentWeather = async (lat, long) => {
   const weather = await fetch(currentWeather(lat, long)).then((data) =>
-    data.json()
+    data.json(),
   );
   const air = await fetch(currentAQI(lat, long)).then((data) => data.json());
   const aqiIndex = airQualityIndex(air.list[0].components.pm2_5);
@@ -38,7 +38,7 @@ navigator.geolocation.getCurrentPosition(
   },
   (error) => {
     console.log(error);
-  }
+  },
 );
 
 export const getRandomInt = (max) => {
