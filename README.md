@@ -6,7 +6,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://api.airvisual.com/v2/nearest_city?lat=35.98&lon=140.33&key={{YOUR_API_KEY}}", requestOptions)
+fetch("http://api.airvisual.com/v2/nearest_city?lat=35.98&lon=140.33&key=700030cf-0d66-4fe1-a3cb-e2c6582a7a8c", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
