@@ -20,11 +20,13 @@ function App() {
             position?.coords?.longitude,
           );
           setData(weatherData);
+          // @ts-ignore
           setText(weatherData);
           setIsLoading(false);
         },
         (error) => {
           console.log(error);
+          // @ts-ignore
           setErrorCode(error.code);
           setIsLoading(false);
         },
@@ -51,6 +53,7 @@ function App() {
             <div>humidity: {data.humidity}%</div>
             <div>AQI: {data.aqi}</div>
           </div>
+          { /* @ts-ignore */ }
           <h1>{text}</h1>
         </>
       )}
