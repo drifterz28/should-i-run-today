@@ -1,7 +1,16 @@
 # should-I-run-today
 
-https://home.openweathermap.org/
+```
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
 
+fetch("http://api.airvisual.com/v2/nearest_city?lat=35.98&lon=140.33&key={{YOUR_API_KEY}}", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
