@@ -1,32 +1,35 @@
-import { currentAQI, airIndexMap, currentWeather } from "./constants";
+import { airIndexMap, currentWeather } from "./constants";
 
-const airQualityIndex = (pm2_5) => {
-  let aqi = 0;
-  if (pm2_5 > 12 && pm2_5 <= 35.4) {
-    aqi = 1;
-  } else if (pm2_5 > 35.4 && pm2_5 <= 55.4) {
-    aqi = 2;
-  } else if (pm2_5 > 55.4 && pm2_5 <= 150.4) {
-    aqi = 3;
-  } else if (pm2_5 > 150.5 && pm2_5 <= 250.4) {
-    aqi = 4;
-  } else if (pm2_5 > 250.5) {
-    aqi = 5;
+const airQualityIndex = (aqi) => {
+  let aqiLevel = 0;
+  if (aqi > 51 && aqi <= 100) {
+    aqiLevel = 1;
+  } else if (aqi > 101 && aqi <= 150) {
+    aqiLevel = 2;
+  } else if (aqi > 151 && aqi <= 200) {
+    aqiLevel = 3;
+  } else if (aqi > 201 && aqi <= 300) {
+    aqiLevel = 4;
+  } else if (aqi > 301) {
+    aqiLevel = 5;
   }
-  return aqi;
+  return aqiLevel;
 };
 
+export const celsiusToF = (temp) => (temp * 9) / 5 + 32;
+
+export const weatherIcon = (icon) => `https://airvisual.com/images/${icon}.png`;
+
 export const getCurrentWeather = async (lat, long) => {
-  const weather = await fetch(currentWeather(lat, long)).then((data) =>
+  const { data } = await fetch(currentWeather(lat, long)).then((data) =>
     data.json(),
   );
-  const air = await fetch(currentAQI(lat, long)).then((data) => data.json());
-  const aqiIndex = airQualityIndex(air.list[0].components.pm2_5);
+
+  const aqiIndex = airQualityIndex(data?.current?.pollution?.aqius);
   const aqi = airIndexMap[aqiIndex];
 
   return {
-    ...weather.main,
-    ...weather.wind,
+    ...data?.current?.weather,
     aqi,
     aqiIndex,
   };

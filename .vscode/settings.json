@@ -6,6 +6,12 @@
     "typescript",
     "typescriptreact"
   ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true
+  },
+  "eslint.lintTask.enable": true,
+  "eslint.lintTask.options": "-c ./.eslintrc.js --ignore-path ./.eslintignore .",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

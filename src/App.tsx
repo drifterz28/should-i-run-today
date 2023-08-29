@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { useShouldIRunText } from "./hooks";
 import { defaultState, airIndexColors } from "./constants";
-import { getCurrentWeather } from "./helpers";
+import { getCurrentWeather, celsiusToF } from "./helpers";
+import { CompassIcon } from "./CompassIcon";
 
 function App() {
   const [data, setData] = useState(defaultState);
@@ -20,21 +21,19 @@ function App() {
             position?.coords?.longitude,
           );
           setData(weatherData);
-          // @ts-ignore
           setText(weatherData);
           setIsLoading(false);
         },
         (error) => {
           console.log(error);
-          // @ts-ignore
           setErrorCode(error.code);
           setIsLoading(false);
         },
       );
     };
     getWeatherData();
-    // eslint-disable-next-line
   }, [setData]);
+  console.log(data);
 
   return (
     <div
@@ -48,12 +47,12 @@ function App() {
       {!isLoading && (
         <>
           <div className="App-header">
-            <div>Temp: {data?.temp}</div>
-            <div>Wind: {data.speed}</div>
-            <div>humidity: {data.humidity}%</div>
+
+            <div>Temp: {celsiusToF(data?.tp)}°F</div>
+            <div>Wind: {data.ws}<CompassIcon direction={data.wd}/></div>
+            <div>humidity: {data.hu}%</div>
             <div>AQI: {data.aqi}</div>
           </div>
-          { /* @ts-ignore */ }
           <h1>{text}</h1>
         </>
       )}

@@ -1,8 +1,8 @@
-export const openKey = "ff6f5d189dfa1eba10cc3559a7eb097d";
+export const openKey = "700030cf-0d66-4fe1-a3cb-e2c6582a7a8c";
 export const airIndexMap = [
   "Good",
   "Moderate",
-  "Poor",
+  "Unhealthy",
   "Very Poor",
   "Very unhealthy",
   "Hazardous",
@@ -16,20 +16,16 @@ export const airIndexColors = [
   "#880E4F",
 ];
 export const currentWeather = (lat, long) =>
-  `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=${openKey}`;
-export const currentAQI = (lat, long) =>
-  `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${long}&appid=${openKey}`;
+  `https://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=${openKey}`;
 
 export const defaultState = {
-  temp: "--",
-  feels_like: "--",
-  temp_min: "--",
-  temp_max: "--",
-  pressure: "--",
-  humidity: "--",
-  speed: "--",
-  deg: "--",
-  gust: "--",
+  hu: "--",
+  ic: "--",
+  pr: "--",
+  tp: "--",
+  ts: "--",
+  wd: "--",
+  ws: "--",
   aqi: "",
   aqiIndex: 0,
 };
