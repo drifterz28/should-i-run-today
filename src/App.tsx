@@ -43,9 +43,7 @@ const App = () => {
     <div
       className="App"
       style={{
-        backgroundColor: data?.aqiIndex
-          ? airIndexColors[data.aqiIndex]
-          : undefined,
+        backgroundColor: airIndexColors[data.aqiIndex],
       }}
     >
       {isLoading && <h1 className="Loading">Loading...</h1>}
@@ -55,7 +53,6 @@ const App = () => {
       {!isLoading && (
         <>
           <div className="App-header">
-            <div>City: {data.city}</div>
             {data?.tp && data?.ic && (
               <div className="Flex-div">
                 <div>Temp: {celsiusToF(data?.tp)}°F</div>
@@ -72,8 +69,10 @@ const App = () => {
             </div>
             <div>humidity: {data.hu}%</div>
             <div>AQI: {data.aqi}</div>
+            <div>City: {data.city}</div>
           </div>
           <h1>{text}</h1>
+          <div className="Last-update">{new Date(data.ts).toLocaleString()}</div>
         </>
       )}
     </div>

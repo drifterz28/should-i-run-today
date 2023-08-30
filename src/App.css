@@ -11,16 +11,18 @@
   font-weight: bold;
   display: flex;
   padding-top: 40px;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   min-height: 10vh;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin: 0 10px;
+  flex-wrap: wrap;
 }
 
 h1 {
   color: white;
-  font-size: calc(10px + 10vmin);
+  font-size: 11vw;
   margin: 20px auto;
   max-width: 80%;
 }
@@ -28,14 +30,22 @@ h1 {
 .Flex-div {
   display: flex;
   align-items: center;
-  > div {
+
+  >div {
     margin-right: 20px;
   }
 }
 
 .Weather-icon {
   height: 30px;
+  width: 30px;
   background: white;
   padding: 3px;
   border-radius: 5px;
+}
+
+.Last-update {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

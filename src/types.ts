@@ -8,5 +8,5 @@ export type WeatherDataType = {
   ic: string;
   city: string;
   aqi: string;
-  aqiIndex: number | null;
+  aqiIndex: number;
 };
