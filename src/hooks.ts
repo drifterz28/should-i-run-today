@@ -4,24 +4,24 @@ import { getRandomInt } from "./helpers";
 
 export type weatherData = {
   aqiIndex: number;
-  feels_like: number;
-  humidity: number;
-  speed: number;
+  tp: number;
+  hu: number;
+  ws: number;
 };
 
 const defaultWeatherData = {
-  aqiIndex: 0,
-  feels_like: 0,
-  humidity: 0,
-  speed: 0,
-};
+  "tp": 0,
+  "hu": 0,
+  "ws": 0,
+  "aqiIndex": 0
+}
 
 export const useShouldIRunText = () => {
   const [text, setText] = useState("");
   const [weatherData, setWeatherData] =
     useState<weatherData>(defaultWeatherData);
-  const { aqiIndex, feels_like, humidity, speed } = weatherData;
-  const isGood = aqiIndex < 3 && feels_like < 90 && humidity < 90 && speed < 20;
+  const { aqiIndex, tp, hu, ws } = weatherData;
+  const isGood = aqiIndex < 3 && tp < 33 && hu < 90 && ws < 20;
 
   useEffect(() => {
     if (isGood) {
@@ -32,5 +32,5 @@ export const useShouldIRunText = () => {
       setText(shouldIRunNo[randomNumber]);
     }
   }, [setText, isGood]);
-  return [text, setWeatherData];
+  return [text, setWeatherData] as const;
 };

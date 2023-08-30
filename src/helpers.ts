@@ -1,6 +1,6 @@
 import { airIndexMap, currentWeather } from "./constants";
 
-const airQualityIndex = (aqi) => {
+const airQualityIndex = (aqi: number) => {
   let aqiLevel = 0;
   if (aqi > 51 && aqi <= 100) {
     aqiLevel = 1;
@@ -16,20 +16,21 @@ const airQualityIndex = (aqi) => {
   return aqiLevel;
 };
 
-export const celsiusToF = (temp) => (temp * 9) / 5 + 32;
+export const celsiusToF = (temp: number) => (temp * 9) / 5 + 32;
 
-export const weatherIcon = (icon) => `https://airvisual.com/images/${icon}.png`;
+export const weatherIcon = (icon: string) =>
+  `https://airvisual.com/images/${icon}.png`;
 
-export const getCurrentWeather = async (lat, long) => {
+export const getCurrentWeather = async (lat: number, long: number) => {
   const { data } = await fetch(currentWeather(lat, long)).then((data) =>
     data.json(),
   );
-
   const aqiIndex = airQualityIndex(data?.current?.pollution?.aqius);
   const aqi = airIndexMap[aqiIndex];
 
   return {
     ...data?.current?.weather,
+    city: data.city,
     aqi,
     aqiIndex,
   };
@@ -44,6 +45,6 @@ navigator.geolocation.getCurrentPosition(
   },
 );
 
-export const getRandomInt = (max) => {
+export const getRandomInt = (max: number) => {
   return Math.floor(Math.random() * max);
 };

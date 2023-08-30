@@ -21,6 +21,21 @@
 h1 {
   color: white;
   font-size: calc(10px + 10vmin);
-  margin: auto;
+  margin: 20px auto;
   max-width: 80%;
+}
+
+.Flex-div {
+  display: flex;
+  align-items: center;
+  > div {
+    margin-right: 20px;
+  }
+}
+
+.Weather-icon {
+  height: 30px;
+  background: white;
+  padding: 3px;
+  border-radius: 5px;
 }

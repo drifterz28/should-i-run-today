@@ -1,3 +1,5 @@
+import { WeatherDataType } from "./types";
+
 export const openKey = "700030cf-0d66-4fe1-a3cb-e2c6582a7a8c";
 export const airIndexMap = [
   "Good",
@@ -7,6 +9,7 @@ export const airIndexMap = [
   "Very unhealthy",
   "Hazardous",
 ];
+
 export const airIndexColors = [
   "#689F38",
   "#FBC02D",
@@ -15,19 +18,21 @@ export const airIndexColors = [
   "#AD1457",
   "#880E4F",
 ];
-export const currentWeather = (lat, long) =>
+
+export const currentWeather = (lat: number, long: number) =>
   `https://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=${openKey}`;
 
-export const defaultState = {
-  hu: "--",
-  ic: "--",
-  pr: "--",
-  tp: "--",
-  ts: "--",
-  wd: "--",
-  ws: "--",
+export const defaultState: WeatherDataType = {
+  hu: null,
+  ic: "",
+  pr: null,
+  tp: null,
+  ts: "",
+  wd: null,
+  ws: null,
   aqi: "",
   aqiIndex: 0,
+  city: "",
 };
 
 export const shouldIRunYes = [
