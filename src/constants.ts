@@ -1,6 +1,6 @@
 import { WeatherDataType } from "./types";
 
-export const openKey = "700030cf-0d66-4fe1-a3cb-e2c6582a7a8c";
+export const openKey = "36e1685a-f42f-4198-9e0b-bc999bd991ef";
 export const airIndexMap = [
   "Good",
   "Moderate",
